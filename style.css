@@ -202,7 +202,7 @@ section { padding: 100px 5%; }
 /* logo.png deve ser a versão branca (fundo escuro).
    No modo claro, filtro CSS converte para versão escura automaticamente. */
 .logo-img {
-  height: 75px;
+  height: 52px;
   width: auto;
   display: block;
   transition: filter 0.4s;
@@ -219,7 +219,7 @@ section { padding: 100px 5%; }
   margin-bottom: 16px;
   text-decoration: none;
 }
-.footer-logo-img { height: 75px; }
+.footer-logo-img { height: 44px; }
 
 /* ── ÍCONES SVG — cor adaptiva ao tema ──────────────────── */
 /* service-icon e hik-icon usam currentColor, herdando a cor do tema */
@@ -989,15 +989,30 @@ footer {
   .nav-links { display: none; }
   .hamburger { display: flex; }
 
+  /* Menu mobile abre abaixo da navbar sem cortar */
   .nav-links.open {
-    display: flex; flex-direction: column; gap: 0;
-    position: fixed; top: 64px; left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
     background: var(--nav-bg);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    padding: 16px 5%;
+    padding: 8px 5% 16px;
+    /* Garante que o menu nunca seja cortado */
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    z-index: 99;
   }
-  .nav-links.open a { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .nav-links.open li { width: 100%; }
+  .nav-links.open a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .nav-links.open li:last-child a { border-bottom: none; }
 
   .hero-visual  { display: none; }
   #hero         { padding-bottom: 0; }
@@ -1014,6 +1029,27 @@ footer {
 }
 
 @media (max-width: 600px) {
+  /* Esconde o botão "Fale Conosco" — já tem o link no menu */
+  .nav-cta { display: none; }
+
+  /* Navbar mais compacta */
+  nav { padding: 0 4%; }
+
+  .logo-img { height: 40px; }
+
   .footer-grid  { grid-template-columns: 1fr; }
-  .hero-title   { font-size: 2.5rem; }
+  .hero-title   { font-size: 2.2rem; }
+
+  /* Hero stats em 2 colunas no mobile */
+  .hero-stats { gap: 20px; }
+  .stat-num   { font-size: 1.6rem; }
+
+  /* Seções com menos padding */
+  section { padding: 64px 4%; }
+}
+
+@media (max-width: 400px) {
+  .logo-img { height: 34px; }
+  nav { height: 56px; }
+  .nav-links.open { top: 56px; max-height: calc(100vh - 56px); }
 }
