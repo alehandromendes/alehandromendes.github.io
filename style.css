@@ -232,6 +232,29 @@ nav {
 }
 .logo-shield svg { width: 100%; height: 100%; }
 
+/* Logo dividida: ícone (colorido) + texto (branco) */
+.logo-icon,
+.logo-text {
+  height: 56px;
+  width: auto;
+  vertical-align: middle;
+}
+.logo-icon { margin-right: 2px; }
+
+/* Modo escuro: texto branco — sem filtro */
+[data-theme="dark"] .logo-text  { filter: none; }
+/* Modo claro: apenas o texto fica escuro */
+[data-theme="light"] .logo-text { filter: brightness(0); transition: filter 0.3s ease; }
+
+/* Footer logo */
+.footer-logo-icon,
+.footer-logo-text {
+  height: 56px;
+  width: auto;
+  vertical-align: middle;
+}
+[data-theme="light"] .footer-logo-text { filter: brightness(0); transition: filter 0.3s ease; }
+
 .nav-brand { display: flex; flex-direction: column; line-height: 1; }
 .nav-brand strong {
   font-family: 'Rajdhani', sans-serif;
