@@ -1,6 +1,5 @@
 /* ============================================================
-   AXION ENGENHARIA — main.js
-   Versão 1 · Industrial Tech Minimalist
+   SENTINEL CONSULTORIA — main.js
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,24 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
   /* TEMA CLARO / ESCURO */
   const themeToggleBtn = document.getElementById('themeToggle');
   const htmlEl         = document.documentElement;
-  const iconMoon       = document.getElementById('iconMoon');
-  const iconSun        = document.getElementById('iconSun');
 
-  function applyTheme(theme) {
-    htmlEl.setAttribute('data-theme', theme);
-    localStorage.setItem('axion-theme', theme);
-    if (iconMoon && iconSun) {
-      iconMoon.style.display = theme === 'dark'  ? 'block' : 'none';
-      iconSun.style.display  = theme === 'light' ? 'block' : 'none';
-    }
+  function setThemeIcon(theme) {
+    themeToggleBtn.innerHTML = theme === 'dark'
+      ? '<i data-lucide="moon"></i>'
+      : '<i data-lucide="sun"></i>';
+    lucide.createIcons({ nodes: [themeToggleBtn] });
   }
 
-  const savedTheme = localStorage.getItem('axion-theme') || 'dark';
-  applyTheme(savedTheme);
+  const savedTheme = localStorage.getItem('sentinel-theme') || 'dark';
+  htmlEl.setAttribute('data-theme', savedTheme);
+  setThemeIcon(savedTheme);
 
   themeToggleBtn.addEventListener('click', () => {
     const current = htmlEl.getAttribute('data-theme');
-    applyTheme(current === 'dark' ? 'light' : 'dark');
+    const next    = current === 'dark' ? 'light' : 'dark';
+    htmlEl.setAttribute('data-theme', next);
+    setThemeIcon(next);
+    localStorage.setItem('sentinel-theme', next);
   });
 
   /* MENU MOBILE */
@@ -116,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach(el => revealObserver.observe(el));
 
-  /* FORMULARIO DE CONTATO */
+  /* FORMULÁRIO DE CONTATO */
   const contactForm = document.getElementById('contactForm');
 
   if (contactForm) {
@@ -129,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Substitua pelo fetch/AJAX real aqui
       setTimeout(() => {
-        btn.innerHTML        = '<span>Mensagem Enviada!</span>';
-        btn.style.background = '#27ae60';
+        btn.innerHTML        = '<span>Mensagem Enviada! ✓</span>';
+        btn.style.background = '#1d4ed8';
         setTimeout(() => {
           btn.innerHTML        = original;
           btn.style.background = '';
@@ -159,5 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { rootMargin: '-40% 0px -55% 0px' });
 
   sections.forEach(sec => spyObserver.observe(sec));
+
+  /* INICIALIZAR ÍCONES LUCIDE */
+  lucide.createIcons();
 
 });
