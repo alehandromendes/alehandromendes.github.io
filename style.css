@@ -1070,3 +1070,214 @@ footer {
   .hero-title   { font-size: 2.5rem; }
   .segmentos-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ── PRICING TABLE ──────────────────────────────────────── */
+.pricing-intro {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.pricing-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--text);
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.pricing-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-mid), var(--blue-light));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pricing-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+.pricing-card:hover::before { opacity: 1; }
+
+/* Featured card */
+.pricing-card--featured {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: linear-gradient(160deg, var(--bg3) 0%, var(--surface) 100%);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.12);
+}
+.pricing-card--featured::before { opacity: 1; }
+.pricing-card--featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(59, 130, 246, 0.22);
+}
+
+.pricing-popular {
+  position: absolute;
+  top: 18px; right: 18px;
+  background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.pricing-layer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: var(--blue-light);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.pricing-layer-badge::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--blue-light);
+}
+
+.pricing-header { display: flex; flex-direction: column; gap: 12px; }
+
+.pricing-icon {
+  width: 44px; height: 44px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--blue-light);
+  transition: background 0.3s, border-color 0.3s;
+}
+.pricing-card:hover .pricing-icon {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.pricing-header h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+}
+
+.pricing-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.price-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.price-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue-light);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.pricing-card--featured .price-value { color: #60A5FA; }
+
+.price-cents {
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  opacity: 0.75;
+}
+
+.pricing-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.pricing-items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.pricing-items li i {
+  flex-shrink: 0;
+  width: 14px; height: 14px;
+  color: var(--blue-light);
+  margin-top: 2px;
+}
+
+.pricing-items li:first-child {
+  color: var(--text);
+  font-weight: 500;
+}
+.pricing-items li:first-child i {
+  color: #60A5FA;
+}
+
+.pricing-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
